@@ -1,0 +1,94 @@
+<!-- templates/tweet/home.html -->
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container timeline-container">
+        <div class="row">
+            <!-- 왼쪽 컬럼 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.username }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ user.email }}</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- 오른 쪽 컬럼-->
+            <div class="col-md-7">
+                <!-- 글을 작성 하는 곳 -->
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">제품을 등록해주세요</h5>
+                                        <p>
+                                        <form method="post" action="/product/">
+                                            {% csrf_token %}
+                                            <div class="form-group mt-2 mb-2">
+                                                <label for="code">코드</label>
+                                                <input type="text" class="form-control" id="code" name="code">
+                                            </div>
+                                            <div class="form-group mt-2 mb-2">
+                                                <label for="name">상품명</label>
+                                                <input type="text" class="form-control" id="name" name="name">
+                                            </div>
+                                            <div class="form-group mt-2 mb-2">
+                                                <label for="description">상품설명</label>
+                                                <input type="text" class="form-control" id="description" name="description">
+                                            </div>
+                                            <div class="form-group mt-2 mb-2">
+                                                <label for="price">가격</label>
+                                                <input type="text" class="form-control" id="price" name="price">
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="size" name="size">
+                                                        <option selected>사이즈</option>
+                                                        <option value="Small">small</option>
+                                                        <option value="Medium">medium</option>
+                                                        <option value="Large">large</option>
+                                                        <option value="Free">free</option>
+                                                    </select>
+                                                    <label for="size">사이즈를 선택해주세요</label>
+                                                </div>
+
+                                            <button type="submit" class="btn btn-primary" style="float:right;">등록하기
+                                            </button>
+                                        </form>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- 작성 된 글이 나오는 곳 -->
+                <div class="row">
+                    {% for pr in product %}
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">{{ pr.name }}</h5>
+                                        <h6 class="mt-0">{{ pr.code }}</h6>
+                                        <h6 class="mt-0">{{ pr.description }}</h6>
+                                        <h6 class="mt-0">{{ pr.price }}원</h6>
+                                        <h6 class="mt-0">{{ pr.size }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}
