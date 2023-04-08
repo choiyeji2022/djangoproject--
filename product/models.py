@@ -26,3 +26,10 @@ class ProductModel(models.Model):
             self.stock_quantity = 0
             super(ProductModel, self).save(*args, **kwargs)
 
+class Inbound(models.Model):
+    class Meta:
+        db_table = 'inbound'
+
+    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)

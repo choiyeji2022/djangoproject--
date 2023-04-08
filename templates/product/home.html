@@ -41,7 +41,7 @@
                                             </div>
                                             <div class="form-group mt-2 mb-2">
                                                 <label for="price">가격</label>
-                                                <input type="text" class="form-control" id="price" name="price">
+                                                <input type="text" class="form-control" id="price" name="price" placeholder=",를 빼고 입력해주세요.">
                                             </div>
                                             <div class="col-md">
                                                 <div class="form-floating">
@@ -75,7 +75,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <h5 class="mt-0">{{ pr.name }}</h5>
-                                        <h6 class="mt-0">{{ pr.code }}</h6>
+                                        <h6 class="mt-0">no.{{ pr.code }}</h6>
                                         <h6 class="mt-0">{{ pr.description }}</h6>
                                         <h6 class="mt-0">{{ pr.price }}원</h6>
                                         <h6 class="mt-0">{{ pr.size }}</h6>
